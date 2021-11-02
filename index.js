@@ -1,5 +1,3 @@
-// similar to README file
-
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -50,7 +48,71 @@ function init() {
            createTeam();
     });
   }
+  
 // make team members starting at function make manager through 52
+function makeEngineer() {
+    console.log("Please build your team");
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "engineerName",
+        message: "What is your engineer's name?",
+      },
+      {
+        type: "input",
+        name: "engineerId",
+        message: "What is your engineer's id?",
+      },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is your engineer's email?",
+      },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is your engineer's GitHub username?",
+      }
+
+
+    ]).then(answers => {
+      const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+      teamArray.push(engineer);
+           createTeam();
+    });
+  }
+
+  function makeIntern() {
+    console.log("Please build your team");
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "internName",
+        message: "What is your intern's name?",
+      },
+      {
+        type: "input",
+        name: "internId",
+        message: "What is your intern's id?",
+      },
+      {
+        type: "input",
+        name: "internEmail",
+        message: "What is your intern's email?",
+      },
+      {
+        type: "input",
+        name: "internSchool",
+        message: "What is your school name?",
+      }
+
+
+    ]).then(answers => {
+      const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+      teamArray.push(intern);
+           createTeam();
+    });
+  }
   function createTeam() {
     inquirer.prompt([
       {
