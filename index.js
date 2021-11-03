@@ -40,14 +40,11 @@ function init() {
         name: "managerOfficeNumber",
         message: "What is your manager's office number?",
       }
-
-
     ]).then(answers => {
       const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
       teamArray.push(manager);
            createTeam();
     });
-  }
   
 // make team members starting at function make manager through 52
 function makeEngineer() {
@@ -113,6 +110,7 @@ function makeEngineer() {
            createTeam();
     });
   }
+}
   function createTeam() {
     inquirer.prompt([
       {

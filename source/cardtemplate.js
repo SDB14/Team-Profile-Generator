@@ -105,8 +105,3 @@ const cardGenerator= team => {
      `;
  };
  
- 
- 
- 
- 
- 
