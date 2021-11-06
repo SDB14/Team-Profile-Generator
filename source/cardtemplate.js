@@ -30,7 +30,7 @@ const cardGenerator= team => {
             <ul class="list-group">
                 <li class="list-group-item">ID: ${engineer.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-                <li class="list-group-item">Office number: ${engineer.getGithub()}</li>
+                <li class="list-group-item">GitHub Username: ${engineer.getGithub()}</li>
             </ul>
         </div>
     </div>
