@@ -66,7 +66,7 @@ const cardGenerator= team => {
     );
     html.push(team
         .filter(employee => employee.getRole() === "Engineer")
-        .map(intern => generateEngineerCard(engineer))
+        .map(engineer => generateEngineerCard(engineer))
     );
      return html.join("");
  }

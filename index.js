@@ -40,77 +40,76 @@ function init() {
         name: "managerOfficeNumber",
         message: "What is your manager's office number?",
       }
-    ]).then(answers => {
+    ])
+
+    .then(answers => {
       const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
       teamArray.push(manager);
-           createTeam();
+      createTeam();
     });
+  }
+
+    // make team members starting at function make manager through 52
+    function makeEngineer() {
+      console.log("Please build your team");
+      inquirer.prompt([
+        {
+          type: "input",
+          name: "engineerName",
+          message: "What is your engineer's name?",
+        },
+        {
+          type: "input",
+          name: "engineerId",
+          message: "What is your engineer's id?",
+        },
+        {
+          type: "input",
+          name: "engineerEmail",
+          message: "What is your engineer's email?",
+        },
+        {
+          type: "input",
+          name: "engineerGithub",
+          message: "What is your engineer's GitHub username?",
+        }
+      ]).then(answers => {
+        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+        teamArray.push(engineer);
+        createTeam();
+      });
+    }
+
+    function makeIntern() {
+      console.log("Please build your team");
+      inquirer.prompt([
+        {
+          type: "input",
+          name: "internName",
+          message: "What is your intern's name?",
+        },
+        {
+          type: "input",
+          name: "internId",
+          message: "What is your intern's id?",
+        },
+        {
+          type: "input",
+          name: "internEmail",
+          message: "What is your intern's email?",
+        },
+        {
+          type: "input",
+          name: "internSchool",
+          message: "What is your school name?",
+        }
+      ]).then(answers => {
+        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        teamArray.push(intern);
+        createTeam();
+      });
+    }
   
-// make team members starting at function make manager through 52
-function makeEngineer() {
-    console.log("Please build your team");
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "engineerName",
-        message: "What is your engineer's name?",
-      },
-      {
-        type: "input",
-        name: "engineerId",
-        message: "What is your engineer's id?",
-      },
-      {
-        type: "input",
-        name: "engineerEmail",
-        message: "What is your engineer's email?",
-      },
-      {
-        type: "input",
-        name: "engineerGithub",
-        message: "What is your engineer's GitHub username?",
-      }
-
-
-    ]).then(answers => {
-      const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-      teamArray.push(engineer);
-           createTeam();
-    });
-  }
-
-  function makeIntern() {
-    console.log("Please build your team");
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "internName",
-        message: "What is your intern's name?",
-      },
-      {
-        type: "input",
-        name: "internId",
-        message: "What is your intern's id?",
-      },
-      {
-        type: "input",
-        name: "internEmail",
-        message: "What is your intern's email?",
-      },
-      {
-        type: "input",
-        name: "internSchool",
-        message: "What is your school name?",
-      }
-
-
-    ]).then(answers => {
-      const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-      teamArray.push(intern);
-           createTeam();
-    });
-  }
-}
   function createTeam() {
     inquirer.prompt([
       {
@@ -123,22 +122,23 @@ function makeEngineer() {
           "I don't want to add any more team members"
         ]
       }
-    ]).then(function(userChoice) {
-      switch(userChoice.memberChoice) {
-      case "Engineer":
-        addEngineer();
-        break;
-      case "Intern":
-        addIntern();
-        break;
-      default:
-        buildTeam();
+    ]).then(function (userChoice) {
+      switch (userChoice.memberChoice) {
+        case "Engineer":
+          makeEngineer();
+          break;
+        case "Intern":
+          makeIntern();
+          break;
+        default:
+          buildTeam();
       }
     });
   }
   function buildTeam() {
     fs.writeFileSync(outputPath, createHtml(teamArray), "utf-8");
   }
+
   makeManager();
 }
 init();
